@@ -1,4 +1,4 @@
-package com.help.Help;
+package com.help.exception.handling;
 
 public class FileStorageException extends RuntimeException{
 	public FileStorageException(String message) {

@@ -1,4 +1,4 @@
-package com.help.Help;
+package com.help.dto;
 
 import java.util.ArrayList;
 

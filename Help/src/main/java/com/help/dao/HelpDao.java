@@ -1,4 +1,4 @@
-package com.help.Help;
+package com.help.dao;
 
 public interface HelpDao {
 

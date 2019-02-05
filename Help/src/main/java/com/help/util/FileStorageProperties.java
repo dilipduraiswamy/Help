@@ -1,4 +1,4 @@
-package com.help.Help;
+package com.help.util;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

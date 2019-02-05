@@ -1,4 +1,4 @@
-package com.help.Help;
+package com.help.service;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,6 +13,10 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.help.exception.handling.FileStorageException;
+import com.help.exception.handling.MyFileNotFoundException;
+import com.help.util.FileStorageProperties;
 
 @Service
 public class HelpServiceImpl implements HelpService {

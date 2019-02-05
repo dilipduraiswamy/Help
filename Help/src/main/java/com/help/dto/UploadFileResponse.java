@@ -1,4 +1,4 @@
-package com.help.Help;
+package com.help.dto;
 
 public class UploadFileResponse {
     private String fileName;
