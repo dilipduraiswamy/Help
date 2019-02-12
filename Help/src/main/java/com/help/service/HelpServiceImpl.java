@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.help.dao.HelpDao;
+import com.help.dto.CharityDetails;
 import com.help.exception.handling.FileStorageException;
 import com.help.exception.handling.MyFileNotFoundException;
 import com.help.util.FileStorageProperties;
@@ -22,6 +24,9 @@ import com.help.util.FileStorageProperties;
 public class HelpServiceImpl implements HelpService {
 
 	private final Path fileStorageLocation;
+	
+	@Autowired
+	HelpDao helpdao;
 	
 	@Autowired
     public HelpServiceImpl(FileStorageProperties fileStorageProperties) {
@@ -69,4 +74,10 @@ public class HelpServiceImpl implements HelpService {
             throw new MyFileNotFoundException("File not found " + fileName, ex);
         }
     }
+
+	@Override
+	public Integer save(CharityDetails charityDetails) throws Exception{
+		// TODO Auto-generated method stub
+		return helpdao.save(charityDetails);
+	}
 }

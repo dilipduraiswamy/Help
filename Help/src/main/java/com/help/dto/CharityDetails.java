@@ -2,6 +2,9 @@ package com.help.dto;
 
 import java.util.ArrayList;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="CharityDetails")
 public class CharityDetails {
 
 	private String name;
