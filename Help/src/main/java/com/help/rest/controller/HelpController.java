@@ -1,6 +1,7 @@
 package com.help.rest.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -87,7 +90,7 @@ public class HelpController {
 	public CharityDetailsResponse save(@RequestBody CharityDetails charityDetails) {
 		try {
 			Integer statusCode = helpService.save(charityDetails);
-			if (statusCode == 1)
+			if (statusCode == 0)
 				return new CharityDetailsResponse("Success", 200);
 			else
 				return new CharityDetailsResponse("Oops!! we are trying to fix the issue !! please try again", 417);
@@ -97,5 +100,43 @@ public class HelpController {
 			return new CharityDetailsResponse("Internal Server Error", 500);
 		}
 
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="/getcharitydetails")
+    public Iterable<CharityDetails> getDetails() {
+		try {
+			List<CharityDetails> list =helpService.findAll();
+			if(list != null && !list.isEmpty())
+				return list;
+			else
+				return null;
+		
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return (Iterable<CharityDetails>) new CharityDetailsResponse("Internal Server Error", 500);
+		}
+	
+    }
+	
+	
+	@RequestMapping(method=RequestMethod.GET, value="/getTopTenCharities")
+    public Iterable<CharityDetails> gettoptenimages() {
+		try {
+		List<CharityDetails> list=helpService.findByRating().subList(0, 10);
+		
+		if(list != null && !list.isEmpty())
+		return list;
+		else 
+			return null;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return (Iterable<CharityDetails>) new CharityDetailsResponse("Internal Server Error", 500);
+		}
+		
+	
 	}
 }

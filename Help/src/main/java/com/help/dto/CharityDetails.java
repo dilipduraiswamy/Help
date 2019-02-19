@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * @author chaitra.honnur
+ *
+ */
 @Document(collection="CharityDetails")
 public class CharityDetails {
 
@@ -18,9 +22,46 @@ public class CharityDetails {
 	private ArrayList<String> videos;
 	
 	private String description;
+	
+	ArrayList<String> comments;
+	
+	ArrayList<Float> ratings;
+	
+	
+	
+	
+
+	public CharityDetails(String name, String phoneNumber, String address, ArrayList<String> images,
+			ArrayList<String> videos, String description, ArrayList<String> comments, ArrayList<Float> ratings) {
+		super();
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.images = images;
+		this.videos = videos;
+		this.description = description;
+		this.comments = comments;
+		this.ratings = ratings;
+	}
 
 	public String getName() {
 		return name;
+	}
+
+	public ArrayList<String> getComments() {
+		return comments;
+	}
+
+	public void setComments(ArrayList<String> comments) {
+		this.comments = comments;
+	}
+
+	public ArrayList<Float> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(ArrayList<Float> ratings) {
+		this.ratings = ratings;
 	}
 
 	public void setName(String name) {
@@ -67,16 +108,7 @@ public class CharityDetails {
 		this.description = description;
 	}
 
-	public CharityDetails(String name, String phoneNumber, String address, ArrayList<String> images,
-			ArrayList<String> videos, String description) {
-		super();
-		this.name = name;
-		this.phoneNumber = phoneNumber;
-		this.address = address;
-		this.images = images;
-		this.videos = videos;
-		this.description = description;
-	}
+	
 
 	public CharityDetails() {
 		super();

@@ -6,15 +6,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.help.dao.HelpDao;
+import com.help.dao.HelpRepo;
 import com.help.dto.CharityDetails;
 import com.help.exception.handling.FileStorageException;
 import com.help.exception.handling.MyFileNotFoundException;
@@ -27,6 +32,9 @@ public class HelpServiceImpl implements HelpService {
 	
 	@Autowired
 	HelpDao helpdao;
+	
+	@Autowired
+	HelpRepo helpRepo;
 	
 	@Autowired
     public HelpServiceImpl(FileStorageProperties fileStorageProperties) {
@@ -78,6 +86,20 @@ public class HelpServiceImpl implements HelpService {
 	@Override
 	public Integer save(CharityDetails charityDetails) throws Exception{
 		// TODO Auto-generated method stub
-		return helpdao.save(charityDetails);
+	/*	List<Float> list = new ArrayList<Float>(charityDetails.getRatings());*/
+		helpRepo.save(charityDetails);
+		return 0;
+	}
+
+	@Override
+    public List < CharityDetails > findAll() {
+		
+        return helpRepo.findAll();
+    }
+	@Override
+    public List < CharityDetails > findByRating() {
+	Sort sortDescending = new Sort(Direction.DESC, "ratings");
+    return helpRepo.findAll(sortDescending);
+	
 	}
 }

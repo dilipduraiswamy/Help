@@ -1,5 +1,7 @@
 package com.help.service;
 
+import java.util.List;
+
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,4 +14,8 @@ public interface HelpService {
 	Resource loadFileAsResource(String fileName);
 	
 	Integer save(CharityDetails charityDetails) throws Exception;
+	
+	    public List < CharityDetails > findAll();
+
+		List<CharityDetails> findByRating();
 }
